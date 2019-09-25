@@ -21,9 +21,24 @@ public class Principal{
 
             Aluno a1 = new Aluno();
             //     public Aluno(int id, String nome, char sexo, String email, String cpf) {
-            Aluno a2 = new Aluno(1,"teste",  'M', "email", "12345678901" );
+            Aluno a2 = new Aluno(1,"teste",  'F', "email", "12345678910" );
             System.out.println("Hello World!");
             a2.addTelefone("38999124145");
+            try
+            {
+                a2.setCpf("111222333444555666");
+            }
+            catch(ErroValidacaoException ex){
+                System.out.println("Aconteceu um erro de validação: " +ex.getMessage() );
+            }
+            
+            try
+            {
+                a2.setSexo('a');
+            }
+            catch(ErroValidacaoException ex){
+                System.out.println("Aconteceu um erro de validação: " +ex.getMessage() );
+            }
         }
     
 }

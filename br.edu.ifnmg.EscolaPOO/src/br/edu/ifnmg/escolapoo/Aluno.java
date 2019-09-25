@@ -13,8 +13,8 @@ import java.util.Date;
 public class Aluno {
     private int id;
     private String nome;
-    private Date dataNasc;
-    private Date dataIngresso;
+    //private Date dataNasc;
+    //private Date dataIngresso;
     private char sexo;
     private String email;
     private List<String> telefones;
@@ -26,7 +26,7 @@ public class Aluno {
         this.telefones = new ArrayList<String>();
     }
 
-    public Aluno(int id, String nome, char sexo, String email, String cpf) {
+    public Aluno(int id, String nome, char F, String email, String cpf) {
         this.id = id;
         this.nome = nome;
         //this.dataNasc = new Date();
@@ -80,8 +80,11 @@ public class Aluno {
         return sexo;
     }
 
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
+    public void setSexo(char sexo) throws ErroValidacaoException{
+        if( sexo != 'M' && sexo!= 'F')
+            throw new ErroValidacaoException("Sexo Inválido!!");
+        else
+            this.sexo = sexo;
     }
 
     public String getEmail() {
@@ -90,6 +93,17 @@ public class Aluno {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) throws ErroValidacaoException {
+        if(cpf.length() != 11)
+            throw new ErroValidacaoException("CPF Inválido (Tamanho != 11 Caracteres)");
+        else
+            this.cpf = cpf;
     }
     
     @Override
